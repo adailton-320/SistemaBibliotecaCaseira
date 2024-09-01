@@ -2,6 +2,7 @@
 ## Modelagem e Diagramação Sistema Biblioteca Caseira.
 ### O objetivo deste documento é especificar os requisitos para o desenvolvimento de um sistema de biblioteca caseira que permitirá ao usuário cadastrar livros e editores, além de realizar pesquisas detalhadas sobre os livros cadastrados.
 
+
 ```mermaid
 classDiagram
     class Livro {
@@ -16,8 +17,7 @@ classDiagram
         +editarLivro()
         +excluirLivro()
     }
-
-    class Editora {
+	class Editora {
         +String nome
         +String endereco
         +String telefone
@@ -27,5 +27,20 @@ classDiagram
         +excluirEditora()
     }
 
-    Livro "1" -- "N" Editora : editora
-```
+    class Usuario {
+        - nome: String
+        - email: String
+        - senha: String
+        - livrosEmprestados: List<Livro>
+    }
+
+    class Emprestimo {
+        - livro: Livro
+        - usuario: Usuario
+        - dataEmprestimo: Date
+        - dataDevolucaoPrevista: Date
+        - dataDevolucaoReal: Date
+    }
+	 Livro "1" -- "N" Editora : editora
+	
+	```
