@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
@@ -24,7 +25,57 @@
 			<h:inputSecret readonly="false" value="#{usuariobean.usuario.senha}" />
 
 		</h:panelGrid>
+
+		<br />
 		<h:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" />
+		<h:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
+		<br />
+		<br />
+
+		<h:dataTable value="#{usuariobean.listarUsuario}" var="user"
+			cellpadding="10" border="1">
+			<f:facet name="header">LISTA DE USUARIOS</f:facet>
+
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputLabel value="#{user.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">NOME</f:facet>
+				<h:outputLabel value="#{user.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">LOGIN</f:facet>
+				<h:outputLabel value="#{user.login}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{user}"
+						target="#{usuariobean.usuario}" />
+
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink value="Excluir"
+					action="#{usuariobean.removerUsuario}">
+					<f:setPropertyActionListener value="#{user}"
+						target="#{usuariobean.usuario}" />
+
+				</h:commandLink>
+			</h:column>
+
+
+
+
+
+		</h:dataTable>
+
 	</h:form>
 
 </h:body>

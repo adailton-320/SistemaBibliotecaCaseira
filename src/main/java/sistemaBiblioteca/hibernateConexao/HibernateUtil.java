@@ -32,5 +32,11 @@ public class HibernateUtil {
 	public static  EntityManager getEntityManager() {
 		return factory.createEntityManager();
 	}
+	
+	public static Object getPrimaryKey(Object entity) { //retorna o id do banco
+		
+		return factory.getPersistenceUnitUtil().getIdentifier(entity);
+		
+	}
 
 }
