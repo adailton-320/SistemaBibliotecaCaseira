@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<h:panelGrid columns="2">
+			<h:outputLabel>Id:</h:outputLabel>
+			<h:inputText readonly="true" value="#{usuariobean.usuario.id}" />
+
+			<h:outputLabel>Nome:</h:outputLabel>
+			<h:inputText readonly="false" value="#{usuariobean.usuario.nome}" />
+
+			<h:outputLabel>login:</h:outputLabel>
+			<h:inputText readonly="false" value="#{usuariobean.usuario.login}" />
+
+			<h:outputLabel>Senha:</h:outputLabel>
+			<h:inputSecret readonly="false" value="#{usuariobean.usuario.senha}" />
+
+		</h:panelGrid>
+		<h:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" />
+	</h:form>
+
+</h:body>
+
+</html>
