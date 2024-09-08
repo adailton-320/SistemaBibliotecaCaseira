@@ -45,9 +45,9 @@ classDiagram
 	Livro "1" -- "N" Editora : editora
 ```
 
-## 3. Implementação do Sistema
+ ## Implementação do Sistema
 
-### 3.1. Tecnologias
+### Tecnologias
 
 ### - **Java:** Linguagem principal para desenvolvimento do sistema.
 ### - **JSF (JavaServer Faces):** Framework para criação da interface de usuário.
