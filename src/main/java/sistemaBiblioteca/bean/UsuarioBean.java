@@ -3,8 +3,10 @@ package sistemaBiblioteca.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import sistemaBiblioteca.daoGenerico.DaoGenerico;
 import sistemaBiblioteca.model.Usuario;
@@ -21,6 +23,7 @@ public class UsuarioBean {
 	public String salvarUsuario() {
 		
 		usuarioDao.mergeSalvaEditar(usuario);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Salvo com sucesso"));
 		
 		return "";
 	}
@@ -35,8 +38,9 @@ public class UsuarioBean {
 	public String removerUsuario() {
 		
 		usuarioDao.deletarId(usuario);
-		
 		usuario= new Usuario();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"informação","Deletado com sucesso"));
+		
 		
 		return "";
 	}

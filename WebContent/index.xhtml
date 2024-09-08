@@ -2,27 +2,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	>
 
 <h:head>
 
 </h:head>
 <h:body>
 
+
 	<h:form>
+	
+		<h:messages showDetail="true" showSummary="false"  />
 
 		<h:panelGrid columns="2">
-			<h:outputLabel>Id:</h:outputLabel>
-			<h:inputText readonly="true" value="#{usuariobean.usuario.id}" />
+			<p:outputLabel>Id:</p:outputLabel>
+			<p:inputText readonly="true" value="#{usuariobean.usuario.id}"/>
 
-			<h:outputLabel>Nome:</h:outputLabel>
-			<h:inputText readonly="false" value="#{usuariobean.usuario.nome}" />
+			<p:outputLabel>Nome:</p:outputLabel>
+			<p:inputText readonly="false" value="#{usuariobean.usuario.nome}" required="true" requiredMessage="Informe o nome:" />
 
-			<h:outputLabel>login:</h:outputLabel>
-			<h:inputText readonly="false" value="#{usuariobean.usuario.login}" />
+			<p:outputLabel>login:</p:outputLabel>
+			<p:inputText readonly="false" value="#{usuariobean.usuario.login}" required="true" requiredMessage="Informe o Login:"/>
 
-			<h:outputLabel>Senha:</h:outputLabel>
-			<h:inputSecret readonly="false" value="#{usuariobean.usuario.senha}" />
+			<p:outputLabel>Senha:</p:outputLabel>
+			<p:password readonly="false" value="#{usuariobean.usuario.senha}" required="true" requiredMessage="Informe a senha:" />
 
 		</h:panelGrid>
 
