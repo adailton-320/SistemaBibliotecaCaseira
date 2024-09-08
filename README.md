@@ -43,6 +43,7 @@ classDiagram
     }
 	Usuario "1" -- "N" Emprestimo : realiza
 	Livro "1" -- "N" Editora : editora
+```
 
 ## 3. Implementação do Sistema
 
@@ -54,4 +55,4 @@ classDiagram
 ### - **JPA (Hibernate):** Para mapeamento objeto-relacional e persistência de dados.
 
 	
-	```
+	
