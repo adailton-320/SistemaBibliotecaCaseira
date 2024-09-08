@@ -41,6 +41,7 @@ classDiagram
         - dataDevolucaoPrevista: Date
         - dataDevolucaoReal: Date
     }
-	 Livro "1" -- "N" Editora : editora
+	Usuario "1" -- "N" Emprestimo : realiza
+	Livro "1" -- "N" Editora : editora
 	
 	```
