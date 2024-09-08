@@ -3,83 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	>
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 
 </h:head>
 <h:body>
 
+	<h:form>
+
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Login" action="index.jsf" />
+			<p:menuitem value="Inicio" action="inicio.jsf" />
+			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
+			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
+
+		</p:breadCrumb>
+	</h:form>
+
+	
+
 
 	<h:form>
-	
-		<h:messages showDetail="true" showSummary="false"  />
+
+		<h:messages showDetail="true" showSummary="false" />
 
 		<h:panelGrid columns="2">
-			<p:outputLabel>Id:</p:outputLabel>
-			<p:inputText readonly="true" value="#{usuariobean.usuario.id}"/>
 
-			<p:outputLabel>Nome:</p:outputLabel>
-			<p:inputText readonly="false" value="#{usuariobean.usuario.nome}" required="true" requiredMessage="Informe o nome:" />
+			<h:outputLabel>Login</h:outputLabel>
+			<h:inputText />
+			<h:outputLabel>Senha</h:outputLabel>
+			<h:inputSecret />
 
-			<p:outputLabel>login:</p:outputLabel>
-			<p:inputText readonly="false" value="#{usuariobean.usuario.login}" required="true" requiredMessage="Informe o Login:"/>
-
-			<p:outputLabel>Senha:</p:outputLabel>
-			<p:password readonly="false" value="#{usuariobean.usuario.senha}" required="true" requiredMessage="Informe a senha:" />
 
 		</h:panelGrid>
 
-		<br />
-		<h:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" />
-		<h:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
-		<br />
-		<br />
+		<h:commandButton value="logar" />
 
-		<h:dataTable value="#{usuariobean.listarUsuario}" var="user"
-			cellpadding="10" border="1">
-			<f:facet name="header">LISTA DE USUARIOS</f:facet>
-
-			<h:column>
-				<f:facet name="header">ID</f:facet>
-				<h:outputLabel value="#{user.id}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">NOME</f:facet>
-				<h:outputLabel value="#{user.nome}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">LOGIN</f:facet>
-				<h:outputLabel value="#{user.login}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Editar</f:facet>
-				<h:commandLink value="Editar">
-					<f:setPropertyActionListener value="#{user}"
-						target="#{usuariobean.usuario}" />
-
-				</h:commandLink>
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink value="Excluir"
-					action="#{usuariobean.removerUsuario}">
-					<f:setPropertyActionListener value="#{user}"
-						target="#{usuariobean.usuario}" />
-
-				</h:commandLink>
-			</h:column>
-
-
-
-
-
-		</h:dataTable>
 
 	</h:form>
 
