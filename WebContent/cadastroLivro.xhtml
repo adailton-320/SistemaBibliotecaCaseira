@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:form id="formMenu">
+
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Login" action="index.jsf" />
+			<p:menuitem value="Inicio" action="inicio.jsf" />
+			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
+			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
+			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
+
+		</p:breadCrumb>
+	</h:form>
+
+
+
+	<h:form id="formdadoslivros">
+
+		<h:messages showDetail="true" showSummary="false" id="msg"/>
+
+		<h:panelGrid columns="2">
+			<h:outputLabel>Id:</h:outputLabel>
+			<h:inputText readonly="true" value="#{livroBean.livro.id}" />
+
+			<h:outputLabel>Titulo:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.titulo}"
+				required="true" requiredMessage="Informe o titulo do livro:" />
+
+			<h:outputLabel>Autor:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.autor}"
+				required="true" requiredMessage="Informe o Autor:" />	
+				
+			<h:outputLabel>Editora:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.editora}"
+				required="true" requiredMessage="Informe a editora:" />	
+				
+			<h:outputLabel>Ano de publicação:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.anoPublicacao}"
+				required="true" requiredMessage="Informe o ano de publicação:" />
+				
+			<h:outputLabel>Assunto:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.assunto}"
+				required="true" requiredMessage="Informe o assunto do livro:" />
+				
+			<h:outputLabel>Isbn:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.isbn}"
+				required="false" requiredMessage="Informe Isbn:" />		
+				
+			<h:outputLabel>Numero de pagina:</h:outputLabel>
+			<h:inputText readonly="false" value="#{livroBean.livro.numPagina}"
+				required="false" requiredMessage="Informe o numero de pagina:" />			
+
+		</h:panelGrid>
+
+		<br />
+		<h:commandButton value="SALVAR" action="#{livroBean.salvaLivro}" />
+		<h:commandButton value="NOVO" action="#{livroBean.limpaFormulario}" />
+		<br />
+		<br />
+		
+		</h:form>
+		
+		
+		<h:form id="formtab">
+
+		<h:dataTable value="#{livroBean.listarLivros}" var="livro"
+			cellpadding="10" border="1">
+			<f:facet name="header">LISTA DE LIVROS</f:facet>
+
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputLabel value="#{livro.id}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">TITULO</f:facet>
+				<h:outputLabel value="#{livro.titulo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">EDITORA</f:facet>
+				<h:outputLabel value="#{livro.editora}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">AUTOR</f:facet>
+				<h:outputLabel value="#{livro.autor}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">ANO DE PUBLICAÇÃO</f:facet>
+				<h:outputLabel value="#{livro.anoPublicacao}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink immediate="true" id="botaoeditar">
+				<h:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
+					<f:setPropertyActionListener value="#{livro}"
+						target="#{livroBean.livro}" />
+						
+
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink immediate="true"
+					action="#{livroBean.removeLivro}" id="botaoexcluir">
+					<h:graphicImage url="resources/img/deletar.jpg" width="40" height="40" />
+					<f:setPropertyActionListener value="#{livro}"
+						target="#{livroBean.livro}" />
+
+
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+</html>

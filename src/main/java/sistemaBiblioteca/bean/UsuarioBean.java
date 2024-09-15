@@ -3,6 +3,7 @@ package sistemaBiblioteca.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,13 +17,18 @@ import sistemaBiblioteca.model.Usuario;
 public class UsuarioBean {
 	
 	private Usuario usuario= new Usuario();
-	//private InteUsuarioServico servicoUsuario;
 	private DaoGenerico<Usuario> usuarioDao= new DaoGenerico<Usuario>();
 	private List<Usuario> listarUsuario= new ArrayList<Usuario>();
+	
+	@PostConstruct
+	public void init() {
+		listarUsuario=	usuarioDao.listar(Usuario.class);
+	}
 	
 	public String salvarUsuario() {
 		
 		usuarioDao.mergeSalvaEditar(usuario);
+		listarUsuario.add(usuario);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação", "Salvo com sucesso"));
 		
 		return "";
@@ -38,6 +44,7 @@ public class UsuarioBean {
 	public String removerUsuario() {
 		
 		usuarioDao.deletarId(usuario);
+		listarUsuario.remove(usuario);
 		usuario= new Usuario();
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"informação","Deletado com sucesso"));
 		
@@ -53,8 +60,6 @@ public class UsuarioBean {
 	}
 
 	public List<Usuario> getListarUsuario() {
-		
-		listarUsuario=	usuarioDao.listar(Usuario.class);
 		
 		return listarUsuario;
 	}

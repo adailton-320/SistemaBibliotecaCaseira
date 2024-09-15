@@ -7,6 +7,9 @@
 	<persistence-unit name="sistemaBiblioteca">
 	
 	<class>sistemaBiblioteca.model.Usuario</class>
+	<class>sistemaBiblioteca.model.Solicitante</class>
+	<class>sistemaBiblioteca.model.Livro</class>
+	<class>sistemaBiblioteca.model.EmprestimoLivro</class>
 	
 	  <properties>
 	      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

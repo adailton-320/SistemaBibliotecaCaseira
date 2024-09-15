@@ -10,13 +10,14 @@
 </h:head>
 <h:body>
 
-	<h:form>
+	<h:form id="formMenu">
 
 		<p:breadCrumb>
 			<p:menuitem />
 			<p:menuitem value="Login" action="index.jsf" />
 			<p:menuitem value="Inicio" action="inicio.jsf" />
 			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
+			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
 			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
 
 		</p:breadCrumb>
@@ -24,9 +25,9 @@
 
 
 
-	<h:form>
+	<h:form id="formdados">
 
-		<h:messages showDetail="true" showSummary="false" />
+		<h:messages showDetail="true" showSummary="false" id="msg"/>
 
 		<h:panelGrid columns="2">
 			<h:outputLabel>Id:</h:outputLabel>
@@ -51,6 +52,11 @@
 		<h:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
 		<br />
 		<br />
+		
+		</h:form>
+		
+		
+		<h:form id="formtab">
 
 		<h:dataTable value="#{usuariobean.listarUsuario}" var="user"
 			cellpadding="10" border="1">
@@ -77,7 +83,7 @@
 				<h:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuariobean.usuario}" />
-						<f:ajax execute="botaoeditar" render="@form" />
+						
 
 				</h:commandLink>
 			</h:column>
@@ -85,17 +91,14 @@
 			<h:column>
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink immediate="true"
-					action="#{usuariobean.removerUsuario}">
+					action="#{usuariobean.removerUsuario}" id="botaoexcluir">
 					<h:graphicImage url="resources/img/deletar.jpg" width="40" height="40" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuariobean.usuario}" />
 
+
 				</h:commandLink>
 			</h:column>
-
-
-
-
 
 		</h:dataTable>
 
