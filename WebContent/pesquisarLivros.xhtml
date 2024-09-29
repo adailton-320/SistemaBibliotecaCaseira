@@ -10,22 +10,28 @@
 </h:head>
 <h:body>
 
-	<h:form id="formPesquisa">
+	<h:form>
 
 		<h:panelGrid columns="2">
 			<h:panelGroup>
 				<h:outputText id="pesquisa" />
-				<p:inputText value="#{livroBean.livro.titulo}" />
-				<p:commandButton icon="ui-icon-search" title="Pesquisa" update="@form"/>
+				<p:inputText value="#{livroBean.campoPesquisa}"
+					placeholder="Informe o titulo" />
+
+				<p:commandButton icon="ui-icon-search" title="Pesquisa"
+					update="formPesquisa" actionListener="#{livroBean.pesquisarLivros}" />
 			</h:panelGroup>
 		</h:panelGrid>
 
+	</h:form>
+
+	<h:form id="formPesquisa">
 
 		<h:messages showDetail="true" showSummary="false" />
 
-		<p:dataTable value="#{livroBean.listarLivros}" var="livro" 
-		emptyMessage="Nenhum livro encontrado" rows="10"
-			paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+		<p:dataTable value="#{livroBean.listarLivros}" var="livro"
+			emptyMessage="Nenhum livro encontrado" rows="10" paginator="true"
+			paginatorAlwaysVisible="false" paginatorPosition="bottom">
 			<f:facet name="header">LISTA DE LIVROS</f:facet>
 
 			<p:column>
@@ -48,18 +54,9 @@
 				<p:outputLabel value="#{livro.editora}" />
 			</p:column>
 
-			<p:column>
-				<f:facet name="header">ASSUNTO</f:facet>
-				<p:outputLabel value="#{livro.assunto}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">ANO DE PUBLICAÇÃO</f:facet>
-				<p:outputLabel value="#{livro.anoPublicacao}" />
-			</p:column>
-			
 			<p:column style="text-align: center">
-				<p:commandButton icon="ui-icon-check" title="Selecionar"/>
+				<p:commandButton icon="ui-icon-check" title="Selecionar" 
+				action="#{livroBean.selecionarLivro(livro)}" process="@this"/>
 			</p:column>
 
 		</p:dataTable>

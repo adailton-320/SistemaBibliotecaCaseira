@@ -32,6 +32,12 @@ public class EmprestimoLivroBean {
 
 	}
 	
+	public void livroSelecionado(SelectEvent evento) {
+		Livro livro = (Livro) evento.getObject();
+		emprestimoLivro.setLivro(livro);
+
+	}
+	
 
 	public String registrarEmprestimo() {
 		return "";

@@ -49,18 +49,21 @@
 					<p:resetInput target="inputSolicitante" />
 				</p:commandButton>
 
-
 			</h:panelGroup>
-
 
 			<p:outputLabel>Livro:</p:outputLabel>
 			<h:panelGroup>
-				<p:inputText readonly="false"
+				<p:inputText readonly="false" id="inputLivro"
 					value="#{emprestimoLivroBean.emprestimoLivro.livro.titulo}"
 					required="true" requiredMessage="Informe o livro:" />
 
-				<p:commandButton icon="ui-icon-search" title="Pesquisa"
-					update="@form">
+				<p:commandButton icon="ui-icon-search" title="PesquisaLivro"
+				 process="@this" update="@none"
+				 action="#{livroBean.abrirDialogoPesquisa}">
+				 
+				 <p:ajax event="dialogReturn"
+				 listener="#{emprestimoLivroBean.livroSelecionado}"
+				 process="@this" update="inputLivro" />
 
 				</p:commandButton>
 			</h:panelGroup>
