@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<h:form>
+
+		<h:panelGrid columns="2">
+			<h:panelGroup>
+				<h:outputText id="pesquisa" />
+				<p:inputText value="#{solicitantebean.campoPesquisa}"
+					placeholder="Informe numero telefone" />
+				<p:commandButton icon="ui-icon-search" title="Pesquisa"
+					update="formPesquisa"
+					actionListener="#{solicitantebean.pesquisarSolicitante}" />
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+
+	<h:messages showDetail="true" showSummary="false" />
+	<h:form id="formPesquisa">
+		<p:dataTable value="#{solicitantebean.listarSolicitante}"
+			var="solicitante" emptyMessage="Nenhum nome registrado!" rows="10"
+			paginator="true" paginatorAlwaysVisible="false"
+			paginatorPosition="bottom">
+			<f:facet name="header">LISTA SOLICITANTE</f:facet>
+
+			<p:column>
+				<f:facet name="header">ID</f:facet>
+				<p:outputLabel value="#{solicitante.id}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">NOME</f:facet>
+				<p:outputLabel value="#{solicitante.nome}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">SOBRENOME</f:facet>
+				<p:outputLabel value="#{solicitante.sobrenome}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">TELEFONE</f:facet>
+				<p:outputLabel value="#{solicitante.telefone}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">EMAIL</f:facet>
+				<p:outputLabel value="#{solicitante.email}" />
+			</p:column>
+
+			<p:column style="text-align: center">
+				<p:commandButton icon="ui-icon-check" title="Selecionar" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

@@ -17,13 +17,16 @@ public class EmprestimoLivro implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(nullable = false)
-	private Solicitante solicitante;
-	@OneToOne(optional = false, fetch = FetchType.EAGER)
-	private Livro livro;
 	private String dataEmprestimo;
 	private String dataDevolucao;
 
+	@Column(nullable = false)
+	private Solicitante solicitante;
+	
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
+	private Livro livro;
+
+	
 	public String registrarEmprestimo() {
 		return "";
 	}

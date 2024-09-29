@@ -24,6 +24,46 @@
 		</p:breadCrumb>
 	</h:form>
 
+	<h:form id="formsolicitante">
+
+		<h:messages showDetail="true" showSummary="false" id="msg" />
+
+		<h:panelGrid columns="2">
+			
+			<h:outputLabel>Id:</h:outputLabel>
+			<h:inputText readonly="true"
+				value="#{solicitantebean.solicitante.id}" />
+
+			<h:outputLabel>Nome:</h:outputLabel>
+			<h:inputText readonly="false"
+				value="#{solicitantebean.solicitante.nome}" required="true"
+				requiredMessage="Informe o nome:" />
+
+			<h:outputLabel>Sobrenome:</h:outputLabel>
+			<h:inputText readonly="false"
+				value="#{solicitantebean.solicitante.sobrenome}" required="true"
+				requiredMessage="Informe o sobrenome:" />
+
+			<h:outputLabel>Email:</h:outputLabel>
+			<h:inputText readonly="false"
+				value="#{solicitantebean.solicitante.email}" required="true"
+				requiredMessage="Informe o Email:" />
+
+			<h:outputLabel>Telefone:</h:outputLabel>
+			<h:inputText readonly="false"
+				value="#{solicitantebean.solicitante.telefone}" required="true"
+				requiredMessage="Informe a telefone:" />
+
+		</h:panelGrid>
+
+		<br />
+		<h:commandButton value="SALVAR" action="#{solicitantebean.salvarSolicitante}" />
+		<h:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
+		<br />
+		<br />
+
+	</h:form>
+
 
 
 
@@ -54,7 +94,7 @@
 				<f:facet name="header">EDITORA</f:facet>
 				<p:outputLabel value="#{livro.editora}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">ASSUNTO</f:facet>
 				<p:outputLabel value="#{livro.assunto}" />
