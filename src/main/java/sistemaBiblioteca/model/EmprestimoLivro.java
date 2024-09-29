@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.primefaces.event.SelectEvent;
+
 @Entity
 public class EmprestimoLivro implements Serializable {
 
@@ -25,7 +27,6 @@ public class EmprestimoLivro implements Serializable {
 	
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	private Livro livro;
-
 	
 	public String registrarEmprestimo() {
 		return "";

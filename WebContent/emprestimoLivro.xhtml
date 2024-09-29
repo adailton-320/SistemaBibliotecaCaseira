@@ -29,34 +29,50 @@
 	<h:form>
 
 		<h:messages showDetail="true" showSummary="false" />
-		
-		
+
+
 
 		<p:panelGrid columns="2">
-		
-		<p:outputLabel value=" Solicitante:"/>
-		    <h:panelGroup>
-				<p:inputText readonly="true"
-					value="#{emprestimoLivroBean.emprestimoLivro.solicitante}" />
+
+			<p:outputLabel value=" Solicitante:" />
+			<h:panelGroup>
+				<p:inputText readonly="true" id="inputSolicitante"
+					value="#{emprestimoLivroBean.emprestimoLivro.solicitante.nome}" />
+
 				<p:commandButton icon="ui-icon-search" title="Pesquisa"
-					update="@form" />
+					process="@this" update="@none"
+					action="#{solicitantebean.abrirDialogoPesquisa}">
+
+					<p:ajax event="dialogReturn"
+						listener="#{emprestimoLivroBean.solicitanteSelecionado}"
+						process="@this" update="inputSolicitante" />
+					<p:resetInput target="inputSolicitante" />
+				</p:commandButton>
+
+
 			</h:panelGroup>
 
-			
+
 			<p:outputLabel>Livro:</p:outputLabel>
 			<h:panelGroup>
-			<p:inputText readonly="false" value="#{emprestimoLivroBean.emprestimoLivro.livro}"
-				required="true" requiredMessage="Informe o livro:" />
+				<p:inputText readonly="false"
+					value="#{emprestimoLivroBean.emprestimoLivro.livro.titulo}"
+					required="true" requiredMessage="Informe o livro:" />
+
 				<p:commandButton icon="ui-icon-search" title="Pesquisa"
-					update="@form" />
+					update="@form">
+
+				</p:commandButton>
 			</h:panelGroup>
-			
+
 			<p:outputLabel>Data do Emprestimo:</p:outputLabel>
-			<p:inputText readonly="false" value="#{emprestimoLivroBean.emprestimoLivro.dataEmprestimo}"
+			<p:inputText readonly="false"
+				value="#{emprestimoLivroBean.emprestimoLivro.dataEmprestimo}"
 				required="true" requiredMessage="Informe data do emprestimo:" />
 
 			<p:outputLabel>Data da Devolucão:</p:outputLabel>
-			<p:inputText readonly="false" value="#{emprestimoLivroBean.emprestimoLivro.dataDevolucao}"
+			<p:inputText readonly="false"
+				value="#{emprestimoLivroBean.emprestimoLivro.dataDevolucao}"
 				required="true" requiredMessage="Informe data para devolução:" />
 
 		</p:panelGrid>

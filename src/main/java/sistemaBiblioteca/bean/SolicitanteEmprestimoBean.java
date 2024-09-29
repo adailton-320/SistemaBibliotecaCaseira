@@ -1,13 +1,17 @@
 package sistemaBiblioteca.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
 
 import sistemaBiblioteca.daoGenerico.SolicitanteDaoGenerico;
 import sistemaBiblioteca.model.Solicitante;
@@ -26,6 +30,17 @@ public class SolicitanteEmprestimoBean {
 		listarSolicitante= solicitanteDao.listar(Solicitante.class);
 	}
 	
+	public void abrirDialogoPesquisa() {
+
+		Map<String, Object> opcoes = new HashMap<>();
+		opcoes.put("modal", true);
+		opcoes.put("resizable", false);
+		opcoes.put("contentHeight", 470);
+
+		RequestContext.getCurrentInstance().openDialog("pesquisarSolicitante", opcoes, null);
+
+	}
+	
 	public String salvarSolicitante() {
 		
 		solicitanteDao.mergeSalvaEditar(solicitante);
@@ -38,6 +53,12 @@ public class SolicitanteEmprestimoBean {
 	
 	public void pesquisarSolicitante() {
 		listarSolicitante= solicitanteDao.pesquisar(campoPesquisa);
+	}
+	
+	public void selecionarSolicitante(Solicitante solicitante) {
+		
+		RequestContext.getCurrentInstance().closeDialog(solicitante);
+		
 	}
 	
 	public String novoCadastro() {
