@@ -19,7 +19,7 @@
 			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
 			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
 			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
-			<p:menuitem value="Emprestimo" action="cadastroSolicitante.jsf" />
+			<p:menuitem value="Emprestimo" action="emprestimoLivro.jsf" />
 
 		</p:breadCrumb>
 	</h:form>
@@ -28,29 +28,29 @@
 
 	<h:form id="formdados">
 
-		<h:messages showDetail="true" showSummary="false" id="msg"/>
+		<p:messages showDetail="true" showSummary="false" id="msg"/>
 
-		<h:panelGrid columns="2">
-			<h:outputLabel>Id:</h:outputLabel>
-			<h:inputText readonly="true" value="#{usuariobean.usuario.id}" />
+		<p:panelGrid columns="2">
+			<p:outputLabel>Id:</p:outputLabel>
+			<p:inputText readonly="true" value="#{usuariobean.usuario.id}" />
 
-			<h:outputLabel>Nome:</h:outputLabel>
-			<h:inputText readonly="false" value="#{usuariobean.usuario.nome}"
+			<p:outputLabel>Nome:</p:outputLabel>
+			<p:inputText readonly="false" value="#{usuariobean.usuario.nome}"
 				required="true" requiredMessage="Informe o nome:" />
 
-			<h:outputLabel>login:</h:outputLabel>
-			<h:inputText readonly="false" value="#{usuariobean.usuario.login}"
+			<p:outputLabel>login:</p:outputLabel>
+			<p:inputText readonly="false" value="#{usuariobean.usuario.login}"
 				required="true" requiredMessage="Informe o Login:" />
 
-			<h:outputLabel>Senha:</h:outputLabel>
-			<h:inputSecret readonly="false" value="#{usuariobean.usuario.senha}"
-				required="true" requiredMessage="Informe a senha:" />
+			<p:outputLabel>Senha:</p:outputLabel>
+			<p:password readonly="false" value="#{usuariobean.usuario.senha}"
+				 requiredMessage="Informe a senha:" />
 
-		</h:panelGrid>
+		</p:panelGrid>
 
 		<br />
-		<h:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" />
-		<h:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
+		<p:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" ajax="false" />
+		<p:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" ajax="false" />
 		<br />
 		<br />
 		
@@ -59,37 +59,37 @@
 		
 		<h:form id="formtab">
 
-		<h:dataTable value="#{usuariobean.listarUsuario}" var="user"
+		<p:dataTable value="#{usuariobean.listarUsuario}" var="user"
 			cellpadding="10" border="1">
 			<f:facet name="header">LISTA DE USUARIOS</f:facet>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputLabel value="#{user.id}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">NOME</f:facet>
 				<h:outputLabel value="#{user.nome}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">LOGIN</f:facet>
 				<h:outputLabel value="#{user.login}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink immediate="true" id="botaoeditar">
 				<h:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuariobean.usuario}" />
-						
+						<f:ajax execute="botaoeditar" render=":formdados" />
 
 				</h:commandLink>
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink immediate="true"
 					action="#{usuariobean.removerUsuario}" id="botaoexcluir">
@@ -99,9 +99,9 @@
 
 
 				</h:commandLink>
-			</h:column>
+			</p:column>
 
-		</h:dataTable>
+		</p:dataTable>
 
 	</h:form>
 

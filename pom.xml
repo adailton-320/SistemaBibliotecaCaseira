@@ -30,6 +30,8 @@
 			<version>9.2-1003-jdbc4</version>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>

@@ -12,7 +12,7 @@
 
 	<h:form>
 
-		<h:panelGrid columns="2">
+		<p:panelGrid columns="2">
 			<h:panelGroup>
 				<h:outputText id="pesquisa" />
 				<p:inputText value="#{solicitantebean.campoPesquisa}"
@@ -22,7 +22,7 @@
 					update="formPesquisa"
 					actionListener="#{solicitantebean.pesquisarSolicitante}" />
 			</h:panelGroup>
-		</h:panelGrid>
+		</p:panelGrid>
 	</h:form>
 
 	<h:messages showDetail="true" showSummary="false" />

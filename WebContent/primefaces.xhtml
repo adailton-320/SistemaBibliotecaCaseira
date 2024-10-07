@@ -19,18 +19,19 @@
 			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
 			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
 			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
-			<p:menuitem value="Emprestimo" action="cadastroSolicitante.jsf" />
+			<p:menuitem value="Emprestimo" action="emprestimoLivro.jsf" />
 
 		</p:breadCrumb>
 	</h:form>
 
 
 
-	<h:form>
+	<h:form id="formdados">
 
-		<h:messages showDetail="true" showSummary="false" />
+		<p:messages showDetail="true" showSummary="false" />
 
 		<p:panelGrid columns="2">
+			
 			<p:outputLabel>Id:</p:outputLabel>
 			<p:inputText readonly="true" value="#{usuariobean.usuario.id}" />
 
@@ -44,15 +45,20 @@
 
 			<p:outputLabel>Senha:</p:outputLabel>
 			<p:password readonly="false" value="#{usuariobean.usuario.senha}"
-				required="true" requiredMessage="Informe a senha:" />
+			 requiredMessage="Informe a senha:" />
 
 		</p:panelGrid>
 
 		<br />
-		<p:commandButton value="SALVAR" action="#{usuariobean.salvarUsuario}" />
-		<p:commandButton value="NOVO" action="#{usuariobean.novoUsuario}" />
+		<p:commandButton value="SALVAR" ajax="false" action="#{usuariobean.salvarUsuario}" />
+		<p:commandButton value="NOVO" ajax="false" action="#{usuariobean.novoUsuario}" />
 		<br />
 		<br />
+		
+		
+		</h:form>
+		
+		<h:form id="formtab">
 
 		<p:dataTable value="#{usuariobean.listarUsuario}" var="user"
 			cellpadding="10" border="1">
@@ -60,32 +66,33 @@
 
 			<p:column>
 				<f:facet name="header">ID</f:facet>
-				<p:outputLabel value="#{user.id}" />
+				<h:outputLabel value="#{user.id}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">NOME</f:facet>
-				<p:outputLabel value="#{user.nome}" />
+				<h:outputLabel value="#{user.nome}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">LOGIN</f:facet>
-				<p:outputLabel value="#{user.login}" />
+				<h:outputLabel value="#{user.login}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">Editar</f:facet>
-				<p:commandLink immediate="true">
-				<p:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
+				<p:commandLink immediate="true" id="botaoEditar">
+					<p:graphicImage url="resources/img/editar.jpg" width="40"
+						height="40" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuariobean.usuario}" />
-
+					<f:ajax execute="botaoEditar" render=":formdados" />
 				</p:commandLink>
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">Excluir</f:facet>
-				<p:commandLink immediate="true"
+				<p:commandLink immediate="true" id="botaoExcluir"
 					action="#{usuariobean.removerUsuario}">
 					<h:graphicImage url="resources/img/deletar.jpg" width="40" height="40"/>
 					<f:setPropertyActionListener value="#{user}"

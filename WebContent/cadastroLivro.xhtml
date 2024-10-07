@@ -19,7 +19,7 @@
 			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
 			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
 			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
-			<p:menuitem value="Emprestimo" action="cadastroSolicitante.jsf" />
+			<p:menuitem value="Emprestimo" action="emprestimoLivro.jsf" />
 
 		</p:breadCrumb>
 	</h:form>
@@ -28,45 +28,45 @@
 
 	<h:form id="formdadoslivros">
 
-		<h:messages showDetail="true" showSummary="false" id="msg"/>
+		<p:messages showDetail="true" showSummary="false" id="msg"/>
 
-		<h:panelGrid columns="2">
-			<h:outputLabel>Id:</h:outputLabel>
-			<h:inputText readonly="true" value="#{livroBean.livro.id}" />
+		<p:panelGrid columns="2">
+			<p:outputLabel>Id:</p:outputLabel>
+			<p:inputText readonly="true" value="#{livroBean.livro.id}" />
 
-			<h:outputLabel>Titulo:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.titulo}"
+			<p:outputLabel>Titulo:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.titulo}"
 				required="true" requiredMessage="Informe o titulo do livro:" />
 
-			<h:outputLabel>Autor:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.autor}"
+			<p:outputLabel>Autor:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.autor}"
 				required="true" requiredMessage="Informe o Autor:" />	
 				
-			<h:outputLabel>Editora:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.editora}"
+			<p:outputLabel>Editora:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.editora}"
 				required="true" requiredMessage="Informe a editora:" />	
 				
-			<h:outputLabel>Ano de publicação:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.anoPublicacao}"
+			<p:outputLabel>Ano de publicação:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.anoPublicacao}"
 				required="true" requiredMessage="Informe o ano de publicação:" />
 				
-			<h:outputLabel>Assunto:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.assunto}"
+			<p:outputLabel>Assunto:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.assunto}"
 				required="true" requiredMessage="Informe o assunto do livro:" />
 				
-			<h:outputLabel>Isbn:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.isbn}"
+			<p:outputLabel>Isbn:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.isbn}"
 				required="false" requiredMessage="Informe Isbn:" />		
 				
-			<h:outputLabel>Numero de pagina:</h:outputLabel>
-			<h:inputText readonly="false" value="#{livroBean.livro.numPagina}"
+			<p:outputLabel>Numero de pagina:</p:outputLabel>
+			<p:inputText readonly="false" value="#{livroBean.livro.numPagina}"
 				required="false" requiredMessage="Informe o numero de pagina:" />			
 
-		</h:panelGrid>
+		</p:panelGrid>
 
 		<br />
-		<h:commandButton value="SALVAR" action="#{livroBean.salvaLivro}" />
-		<h:commandButton value="NOVO" action="#{livroBean.limpaFormulario}" />
+		<p:commandButton value="SALVAR" action="#{livroBean.salvaLivro}" ajax="false"/>
+		<p:commandButton value="NOVO" action="#{livroBean.limpaFormulario}" ajax="false" />
 		<br />
 		<br />
 		
@@ -75,47 +75,48 @@
 		
 		<h:form id="formtab">
 
-		<h:dataTable value="#{livroBean.listarLivros}" var="livro"
+		<p:dataTable value="#{livroBean.listarLivros}" var="livro"
 			cellpadding="10" border="1">
 			<f:facet name="header">LISTA DE LIVROS</f:facet>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputLabel value="#{livro.id}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">TITULO</f:facet>
 				<h:outputLabel value="#{livro.titulo}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">EDITORA</f:facet>
 				<h:outputLabel value="#{livro.editora}" />
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">AUTOR</f:facet>
 				<h:outputLabel value="#{livro.autor}" />
-			</h:column>
+			</p:column>
 			
-			<h:column>
+			<p:column>
 				<f:facet name="header">ANO DE PUBLICAÇÃO</f:facet>
 				<h:outputLabel value="#{livro.anoPublicacao}" />
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink immediate="true" id="botaoeditar">
 				<h:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
 					<f:setPropertyActionListener value="#{livro}"
 						target="#{livroBean.livro}" />
+						<f:ajax execute="botaoeditar" render=":formdadoslivros" />
 						
 
 				</h:commandLink>
-			</h:column>
+			</p:column>
 
-			<h:column>
+			<p:column>
 				<f:facet name="header">Excluir</f:facet>
 				<h:commandLink immediate="true"
 					action="#{livroBean.removeLivro}" id="botaoexcluir">
@@ -125,9 +126,9 @@
 
 
 				</h:commandLink>
-			</h:column>
+			</p:column>
 
-		</h:dataTable>
+		</p:dataTable>
 
 	</h:form>
 

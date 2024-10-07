@@ -6,7 +6,7 @@ import javax.persistence.EntityTransaction;
 import antlr.collections.List;
 import sistemaBiblioteca.hibernateConexao.HibernateUtil;
 
-public class DaoGenerico<E> {
+public class DaoGenerico<E>{
 
 	private EntityManager manager = HibernateUtil.getEntityManager();
 

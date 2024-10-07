@@ -19,7 +19,7 @@
 			<p:menuitem value="Cadastro Usuario" action="cadastroUsuario.jsf" />
 			<p:menuitem value="Cadastro Livro" action="cadastroLivro.jsf" />
 			<p:menuitem value="PrimeFaces" action="primefaces.jsf" />
-			<p:menuitem value="Emprestimo" action="cadastroSolicitante.jsf" />
+			<p:menuitem value="Emprestimo" action="emprestimoLivro.jsf" />
 
 		</p:breadCrumb>
 	</h:form>
@@ -31,17 +31,18 @@
 
 		<h:messages showDetail="true" showSummary="false" />
 
-		<h:panelGrid columns="2">
+		<p:panelGrid columns="2">
+		
 
-			<h:outputLabel>Login</h:outputLabel>
-			<h:inputText />
-			<h:outputLabel>Senha</h:outputLabel>
-			<h:inputSecret />
+			<p:outputLabel>Login</p:outputLabel>
+			<p:inputText />
+			<p:outputLabel>Senha</p:outputLabel>
+			<p:password />
 
 
-		</h:panelGrid>
+		</p:panelGrid>
 
-		<h:commandButton value="logar" />
+		<p:commandButton value="logar" />
 
 
 	</h:form>

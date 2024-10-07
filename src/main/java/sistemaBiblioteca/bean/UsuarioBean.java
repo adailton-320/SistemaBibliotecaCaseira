@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import sistemaBiblioteca.daoGenerico.DaoGenerico;
+import sistemaBiblioteca.daoGenerico.UsuarioDaoGenerico;
 import sistemaBiblioteca.model.Usuario;
 
 @ManagedBean(name= "usuariobean")
@@ -17,7 +18,9 @@ import sistemaBiblioteca.model.Usuario;
 public class UsuarioBean {
 	
 	private Usuario usuario= new Usuario();
+	//private UsuarioDaoGenerico<Usuario> usuarioDao= new UsuarioDaoGenerico<Usuario>();
 	private DaoGenerico<Usuario> usuarioDao= new DaoGenerico<Usuario>();
+	
 	private List<Usuario> listarUsuario= new ArrayList<Usuario>();
 	
 	@PostConstruct
