@@ -78,8 +78,6 @@ public class LivroBean {
 		
 	}
 	
-	
-
 	public Livro getLivro() {
 		return livro;
 	}

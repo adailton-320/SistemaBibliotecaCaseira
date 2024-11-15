@@ -15,9 +15,9 @@ public class SolicitanteDaoGenerico<E> extends DaoGenerico<Solicitante>{
 	@SuppressWarnings("unchecked")
 	public List<Solicitante> pesquisar(String campoPesquisa) {
 		
-		Query query= manager.createQuery("FROM Solicitante s WHERE s.telefone LIKE :telefone ");
+		Query query= manager.createQuery("FROM Solicitante s WHERE LOWER (s.telefone) LIKE LOWER (:campoPesquisa) OR LOWER (s.nome) LIKE LOWER (:campoPesquisa)");
 		
-		query.setParameter("telefone", "%" + campoPesquisa + "%");
+		query.setParameter("campoPesquisa", "%" + campoPesquisa.toLowerCase() + "%");
 		
 		return query.getResultList();
 	}

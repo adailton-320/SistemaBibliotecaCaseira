@@ -7,17 +7,33 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet library="css" name="file.css" />
 
 </h:head>
 <h:body>
-		
-		<ui:include src="menu.xhtml" />
+
+	<ui:include src="menu.xhtml" />
+
+	<h:form id="formPesquisaTopo">
+		<p:panelGrid>
+			<h:panelGroup>
+				<p:inputText value="#{livroBean.campoPesquisa}" 
+					readonly="false" id="InputPesquisa"
+					placeholder="Informe titulo para pesquisa" />
+					
+					<p:commandButton icon="ui-icon-search" title="Pesquisa"
+					update="formtab" actionListener="#{livroBean.pesquisarLivros}" />
+					
+			</h:panelGroup>
+		</p:panelGrid>
 
 
+	</h:form>
 
+	<br />
 	<h:form id="formdadoslivros">
 
-		<p:messages showDetail="true" showSummary="false" id="msg"/>
+		<p:messages showDetail="true" showSummary="false" id="msg" />
 
 		<p:panelGrid columns="2">
 			<p:outputLabel>Id:</p:outputLabel>
@@ -29,42 +45,47 @@
 
 			<p:outputLabel>Autor:</p:outputLabel>
 			<p:inputText readonly="false" value="#{livroBean.livro.autor}"
-				required="true" requiredMessage="Informe o Autor:" />	
-				
+				required="true" requiredMessage="Informe o Autor:" />
+
 			<p:outputLabel>Editora:</p:outputLabel>
 			<p:inputText readonly="false" value="#{livroBean.livro.editora}"
-				required="true" requiredMessage="Informe a editora:" />	
-				
+				required="true" requiredMessage="Informe a editora:" />
+
 			<p:outputLabel>Ano de publicação:</p:outputLabel>
-			<p:inputText readonly="false" value="#{livroBean.livro.anoPublicacao}"
-				required="true" requiredMessage="Informe o ano de publicação:" />
-				
+			<p:inputText readonly="false"
+				value="#{livroBean.livro.anoPublicacao}" required="true"
+				requiredMessage="Informe o ano de publicação:" />
+
 			<p:outputLabel>Assunto:</p:outputLabel>
 			<p:inputText readonly="false" value="#{livroBean.livro.assunto}"
 				required="true" requiredMessage="Informe o assunto do livro:" />
-				
+
 			<p:outputLabel>Isbn:</p:outputLabel>
 			<p:inputText readonly="false" value="#{livroBean.livro.isbn}"
-				required="false" requiredMessage="Informe Isbn:" />		
-				
+				required="false" requiredMessage="Informe Isbn:" />
+
 			<p:outputLabel>Numero de pagina:</p:outputLabel>
 			<p:inputText readonly="false" value="#{livroBean.livro.numPagina}"
-				required="false" requiredMessage="Informe o numero de pagina:" />			
+				required="false" requiredMessage="Informe o numero de pagina:" />
 
 		</p:panelGrid>
 
 		<br />
-		<p:commandButton value="SALVAR" action="#{livroBean.salvaLivro}" ajax="false"/>
-		<p:commandButton value="NOVO" action="#{livroBean.limpaFormulario}" ajax="false" />
+		<p:commandButton value="SALVAR" action="#{livroBean.salvaLivro}"
+			ajax="false" />
+		<p:commandButton value="NOVO" action="#{livroBean.limpaFormulario}"
+			ajax="false" />
 		<br />
 		<br />
-		
-		</h:form>
-		
-		
-		<h:form id="formtab">
+	</h:form>
+	
+	<br/>
+
+	<h:form id="formtab">
 
 		<p:dataTable value="#{livroBean.listarLivros}" var="livro"
+		emptyMessage="Nenhum livro encontrado" rows="10" paginator="true"
+		paginatorAlwaysVisible="false" paginatorPosition="bottom"
 			cellpadding="10" border="1">
 			<f:facet name="header">LISTA DE LIVROS</f:facet>
 
@@ -82,34 +103,41 @@
 				<f:facet name="header">EDITORA</f:facet>
 				<h:outputLabel value="#{livro.editora}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">AUTOR</f:facet>
 				<h:outputLabel value="#{livro.autor}" />
 			</p:column>
-			
+
 			<p:column>
 				<f:facet name="header">ANO DE PUBLICAÇÃO</f:facet>
 				<h:outputLabel value="#{livro.anoPublicacao}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">ISBN</f:facet>
+				<h:outputLabel value="#{livro.isbn}" />
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">Editar</f:facet>
 				<h:commandLink immediate="true" id="botaoeditar">
-				<h:graphicImage url="resources/img/editar.jpg" width="40" height="40" />
+					<h:graphicImage url="resources/img/editar.jpg" width="40"
+						height="40" />
 					<f:setPropertyActionListener value="#{livro}"
 						target="#{livroBean.livro}" />
-						<f:ajax execute="botaoeditar" render=":formdadoslivros" />
-						
+					<f:ajax execute="botaoeditar" render=":formdadoslivros" />
+
 
 				</h:commandLink>
 			</p:column>
 
 			<p:column>
 				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink immediate="true"
-					action="#{livroBean.removeLivro}" id="botaoexcluir">
-					<h:graphicImage url="resources/img/deletar.jpg" width="40" height="40" />
+				<h:commandLink immediate="true" action="#{livroBean.removeLivro}"
+					id="botaoexcluir">
+					<h:graphicImage url="resources/img/deletar.jpg" width="40"
+						height="40" />
 					<f:setPropertyActionListener value="#{livro}"
 						target="#{livroBean.livro}" />
 

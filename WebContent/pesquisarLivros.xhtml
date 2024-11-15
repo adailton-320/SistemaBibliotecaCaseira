@@ -6,6 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<h:outputStylesheet library="css" name="file.css" />
 
 </h:head>
 <h:body>
@@ -55,8 +56,8 @@
 			</p:column>
 
 			<p:column style="text-align: center">
-				<p:commandButton icon="ui-icon-check" title="Selecionar" 
-				action="#{livroBean.selecionarLivro(livro)}" process="@this"/>
+				<p:commandButton icon="ui-icon-check" title="Selecionar"
+					action="#{livroBean.selecionarLivro(livro)}" process="@this" />
 			</p:column>
 
 		</p:dataTable>
@@ -65,5 +66,7 @@
 	</h:form>
 
 </h:body>
+
+
 
 </html>

@@ -17,7 +17,7 @@
 				<h:outputText id="pesquisa" />
 				<p:inputText value="#{solicitantebean.campoPesquisa}"
 					placeholder="Informe numero telefone" />
-				
+
 				<p:commandButton icon="ui-icon-search" title="Pesquisa"
 					update="formPesquisa"
 					actionListener="#{solicitantebean.pesquisarSolicitante}" />
@@ -27,7 +27,7 @@
 
 	<h:messages showDetail="true" showSummary="false" />
 	<h:form id="formPesquisa">
-		
+
 		<p:dataTable value="#{solicitantebean.listarSolicitante}"
 			var="solicitante" emptyMessage="Nenhum nome registrado!" rows="10"
 			paginator="true" paginatorAlwaysVisible="false"
@@ -61,8 +61,8 @@
 
 			<p:column style="text-align: center">
 				<p:commandButton icon="ui-icon-check" title="Selecionar"
-				action="#{solicitantebean.selecionarSolicitante(solicitante)}"
-				process="@this" />
+					action="#{solicitantebean.selecionarSolicitante(solicitante)}"
+					process="@this" />
 			</p:column>
 
 		</p:dataTable>
@@ -71,5 +71,6 @@
 	</h:form>
 
 </h:body>
+<h:outputStylesheet library="css" name="file.css" />
 
 </html>
