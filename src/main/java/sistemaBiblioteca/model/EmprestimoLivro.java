@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.primefaces.event.SelectEvent;
@@ -21,20 +23,14 @@ public class EmprestimoLivro implements Serializable {
 	private Long id;
 	private String dataEmprestimo;
 	private String dataDevolucao;
-
-	@Column(nullable = false)
+	
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "solicitante_id", nullable = false)
 	private Solicitante solicitante;
 	
 	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	private Livro livro;
 	
-	public String registrarEmprestimo() {
-		return "";
-	}
-
-	public String registrarDevolucao() {
-		return "";
-	}
 
 	public Long getId() {
 		return id;

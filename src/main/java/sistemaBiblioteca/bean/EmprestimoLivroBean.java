@@ -5,13 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import sistemaBiblioteca.daoGenerico.DaoGenerico;
+import sistemaBiblioteca.daoGenerico.EmprestimoDaoGenerico;
+import sistemaBiblioteca.daoGenerico.SolicitanteDaoGenerico;
 import sistemaBiblioteca.model.EmprestimoLivro;
 import sistemaBiblioteca.model.Livro;
 import sistemaBiblioteca.model.Solicitante;
@@ -20,13 +24,16 @@ import sistemaBiblioteca.model.Solicitante;
 @ManagedBean(name = "emprestimoLivroBean")
 public class EmprestimoLivroBean {
 
+	private Solicitante solicitante= new Solicitante();
+	private SolicitanteDaoGenerico<Solicitante> solicitanteDaoGenerico= new SolicitanteDaoGenerico<Solicitante>();
 	private EmprestimoLivro emprestimoLivro = new EmprestimoLivro();
-	private DaoGenerico<EmprestimoLivro> genericoEmprestimo = new DaoGenerico<EmprestimoLivro>();
+	private EmprestimoDaoGenerico<EmprestimoLivro> genericoEmprestimo = new EmprestimoDaoGenerico<EmprestimoLivro>();
 	private List<EmprestimoLivro> listLivrosEmprestado = new ArrayList<EmprestimoLivro>();
 
 	
 
 	public void solicitanteSelecionado(SelectEvent evento) {
+		
 		Solicitante solicitante = (Solicitante) evento.getObject();
 		emprestimoLivro.setSolicitante(solicitante);
 
@@ -39,7 +46,19 @@ public class EmprestimoLivroBean {
 	}
 	
 
-	public String registrarEmprestimo() {
+	public String registrarEmprestimo(){
+		
+		genericoEmprestimo.mergeSalvaEditar(emprestimoLivro);
+		
+		
+		
+		return "";
+	}
+	
+	public String novoEmprestimo() {
+		
+		emprestimoLivro = new EmprestimoLivro();
+		
 		return "";
 	}
 
@@ -57,6 +76,14 @@ public class EmprestimoLivroBean {
 
 	public void setListLivrosEmprestado(List<EmprestimoLivro> listLivrosEmprestado) {
 		this.listLivrosEmprestado = listLivrosEmprestado;
+	}
+	
+	public EmprestimoDaoGenerico<EmprestimoLivro> getGenericoEmprestimo() {
+		return genericoEmprestimo;
+	}
+	
+	public void setGenericoEmprestimo(EmprestimoDaoGenerico<EmprestimoLivro> genericoEmprestimo) {
+		this.genericoEmprestimo = genericoEmprestimo;
 	}
 
 }
